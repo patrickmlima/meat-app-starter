@@ -8,10 +8,6 @@ import { SharedModule } from './shared/shared.module';
 
 import { ROUTES } from './app.routes'
 
-import { RestaurantsService } from './restaurants/restaurants.service';
-import { ShoppingCartService } from './restaurant-detail/shopping-cart/shopping-cart.service';
-import { OrderService } from './order/order.service';
-
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -23,6 +19,7 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { MenuItemComponent } from './restaurant-detail/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
+
 
 @NgModule({
   declarations: [
@@ -44,12 +41,9 @@ import { OrderSummaryComponent } from './order-summary/order-summary.component';
     FormsModule,
     RouterModule.forRoot(ROUTES),
     ReactiveFormsModule,
-    SharedModule
+    SharedModule.forRoot()
   ],
   providers: [
-    RestaurantsService,
-    ShoppingCartService,
-    OrderService,
     { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
