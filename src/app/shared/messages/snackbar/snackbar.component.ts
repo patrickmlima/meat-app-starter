@@ -3,7 +3,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/switchmap';
+import 'rxjs/add/operator/switchMap';
 
 import { NotificationService } from '../notification.service';
 
