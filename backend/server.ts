@@ -1,8 +1,10 @@
 import * as jsonServer from 'json-server'
 import { Express } from 'express'
-
 import * as fs from 'fs'
 import * as https from 'https'
+
+import { handleAuthentication } from './auth'
+import { handleAuthorization } from './authz'
 
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
@@ -19,6 +21,11 @@ server.get('/echo', (req, res) => {
 // To handle POST, PUT and PATCH you need to use a body-parser
 // You can use the one used by JSON Server
 server.use(jsonServer.bodyParser)
+
+// login middleware 
+server.post('/login', handleAuthentication)
+server.use('/orders', handleAuthorization)
+
 server.use((req, res, next) => {
   if (req.method === 'POST') {
     req.body.createdAt = Date.now()
