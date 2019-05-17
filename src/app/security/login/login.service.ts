@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router'
 
 import { Observable } from 'rxjs/Observable'
 import 'rxjs/add/operator/do'
@@ -12,7 +13,7 @@ export class LoginService {
 
     private user: User
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
     login(email: string, password: string): Observable<User> {
         return this.http.post<User>(
@@ -26,5 +27,9 @@ export class LoginService {
 
     getAccessToken(): string {
         return this.isLoggedIn() ? this.user.accessToken : ""
+    }
+
+    handleLogin(path?: string) {
+        this.router.navigate(['/login', path])
     }
 }
